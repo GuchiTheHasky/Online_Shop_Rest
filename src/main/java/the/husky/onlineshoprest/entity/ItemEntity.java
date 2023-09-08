@@ -7,7 +7,7 @@ import lombok.*;
 
 @Entity
 @Data
-@Builder//(toBuilder = true)
+@Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Table(name = "items")

@@ -135,8 +135,9 @@ class ItemRepositoryITest {
         assertTrue(users.isEmpty());
     }
 
+    @DisplayName("Test: filter item-entities by title;")
     @Test
-    public void testFindByTitle() {
+    public void testFilteredItemsByTitle() {
         List<ItemEntity> expectedFirstItemList = List.of(createFirstItemEntity());
         List<ItemEntity> expectedSecondItemList = List.of(createSecondItemEntity());
         List<ItemEntity> expectedThirdItemList = List.of(createThirdItemEntity());
@@ -157,8 +158,9 @@ class ItemRepositoryITest {
         assertEquals(expectedThirdItemList, actualThirdItemList);
     }
 
+    @DisplayName("Test: filter item-entities by price;")
     @Test
-    public void testFindByPrice() {
+    public void testFilterItemsByPrice() {
         List<ItemEntity> expectedFirstItemList = List.of(createFirstItemEntity());
         List<ItemEntity> expectedSecondItemList = List.of(createSecondItemEntity());
         List<ItemEntity> expectedThirdItemList = List.of(createThirdItemEntity());
@@ -179,8 +181,9 @@ class ItemRepositoryITest {
         assertEquals(expectedThirdItemList, actualThirdItemList);
     }
 
+    @DisplayName("Test: filter item-entities by weight;")
     @Test
-    public void testFindByWeight() {
+    public void testFilterItemsByWeight() {
         List<ItemEntity> expectedFirstItemList = List.of(createFirstItemEntity());
         List<ItemEntity> expectedSecondItemList = List.of(createSecondItemEntity());
         List<ItemEntity> expectedThirdItemList = List.of(createThirdItemEntity());
