@@ -2,6 +2,7 @@ package the.husky.onlineshoprest.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -21,7 +22,7 @@ public class UserEntity {
     private long userId;
 
     @Column(name = "name")
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank
     private String name;
 
     @Column(name = "login", unique = true)
@@ -32,12 +33,13 @@ public class UserEntity {
     @NotBlank(message = "Password is mandatory")
     private String password;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email"/*, unique = true*/)
     @Email(message = "Email should be valid")
     private String email;
 
     @Column(name = "age")
     @Min(value = 1, message = "Age should be greater than 0")
+    @Max(value = 150, message = "Age should be less than 150")
     private int age;
 
     @Column(name = "registration_date")

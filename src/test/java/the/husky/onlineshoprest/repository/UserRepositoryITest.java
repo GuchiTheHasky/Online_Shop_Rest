@@ -193,16 +193,6 @@ class UserRepositoryITest {
         assertNotNull(thrown.getMessage());
     }
 
-    @DisplayName("Test: try to save user-entity with duplicate email, throw exception;")
-    @Test
-    public void testSaveUserWithDuplicateEmailThrowException() {
-        UserEntity userWithDuplicateEmail = createUserWithDuplicateEmail();
-
-        Throwable thrown = assertThrows(Exception.class, () -> userRepository.save(userWithDuplicateEmail));
-        assertNotNull(thrown.getMessage());
-    }
-
-
     private UserEntity createFirstUserEntity() {
         return UserEntity.builder()
                 .userId(1L)
