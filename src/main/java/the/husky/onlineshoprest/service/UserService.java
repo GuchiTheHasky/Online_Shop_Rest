@@ -19,8 +19,8 @@ public class UserService {
     private final UserRepository userRepository;
 
     public List<User> getAllUsers() {
-       List<UserEntity> userEntities = userRepository.findAll();
-       return userEntities.stream()
+        List<UserEntity> userEntities = userRepository.findAll();
+        return userEntities.stream()
                 .map(User::toModel)
                 .toList();
     }
@@ -38,8 +38,8 @@ public class UserService {
 
     public User appendUser(UserEntity userEntity) {
         try {
-           UserEntity user = userRepository.save(userEntity);
-           return User.toModel(user);
+            UserEntity user = userRepository.save(userEntity);
+            return User.toModel(user);
         } catch (DataIntegrityViolationException e) {
             String errorMessage = String.format("Current login is already exist: %s", userEntity.getLogin());
             throw new UserAlreadyExistException(errorMessage);

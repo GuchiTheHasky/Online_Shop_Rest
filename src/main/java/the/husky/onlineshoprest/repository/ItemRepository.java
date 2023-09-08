@@ -10,6 +10,8 @@ import java.util.Optional;
 @Repository
 public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
     Optional<List<ItemEntity>> findAllByTitle(String title);
+
     Optional<List<ItemEntity>> findAllByPrice(double price);
+
     Optional<List<ItemEntity>> findAllByWeight(double weight);
 }
