@@ -1,4 +1,4 @@
-package the.husky.onlineshoprest.model;
+package the.husky.onlineshoprest.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +15,7 @@ public class User {
     private int age;
     private LocalDate registrationDate;
 
-    public static User toModel(UserEntity userEntity) {
+    public static User toDto(UserEntity userEntity) {
         long id = userEntity.getUserId();
         String name = userEntity.getName();
         String email = userEntity.getEmail();

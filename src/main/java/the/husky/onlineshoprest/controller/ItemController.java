@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import the.husky.onlineshoprest.entity.ItemEntity;
-import the.husky.onlineshoprest.model.Item;
+import the.husky.onlineshoprest.dto.Item;
 import the.husky.onlineshoprest.service.ItemService;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package the.husky.onlineshoprest.model;
+package the.husky.onlineshoprest.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +13,7 @@ public class Item {
     private double price;
     private double weight;
 
-    public static Item toModel(ItemEntity itemEntity) {
+    public static Item toDto(ItemEntity itemEntity) {
         long itemId = itemEntity.getItemId();
         String title = itemEntity.getTitle();
         String description = itemEntity.getDescription();

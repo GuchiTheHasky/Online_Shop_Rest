@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import the.husky.onlineshoprest.entity.ItemEntity;
 import the.husky.onlineshoprest.exception.item.ItemException;
 import the.husky.onlineshoprest.exception.item.ItemNotFoundException;
-import the.husky.onlineshoprest.model.Item;
+import the.husky.onlineshoprest.dto.Item;
 import the.husky.onlineshoprest.repository.ItemRepository;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class ItemService {
     public List<Item> getAllItems() {
         List<ItemEntity> itemEntities = itemRepository.findAll();
         return itemEntities.stream()
-                .map(Item::toModel)
+                .map(Item::toDto)
                 .toList();
     }
 
@@ -32,13 +32,13 @@ public class ItemService {
             log.error("Error during getting item by id: {}", errorMessage);
             throw new ItemNotFoundException(errorMessage);
         }
-        return Item.toModel(itemEntity);
+        return Item.toDto(itemEntity);
     }
 
     public Item apendItem(ItemEntity itemEntity) {
         if (!isValidItemTitle(itemEntity)) {
             ItemEntity item = itemRepository.save(itemEntity);
-            return Item.toModel(item);
+            return Item.toDto(item);
         }
         String errorMessage = "Error during adding item, title is empty or null";
         log.error("Error during adding item: {}", errorMessage);
@@ -54,7 +54,7 @@ public class ItemService {
             currentItem.setPrice(itemEntity.getPrice());
             currentItem.setWeight(itemEntity.getWeight());
             itemRepository.save(currentItem);
-            return Item.toModel(currentItem);
+            return Item.toDto(currentItem);
         }
         String errorMessage = String.format("Item with id: %s not found", id);
         log.error("Error during editing item: {}", errorMessage);
@@ -86,7 +86,7 @@ public class ItemService {
         Optional<List<ItemEntity>> itemEntities = itemRepository.findAllByTitle(title);
         if (itemEntities.isPresent()) {
             return itemEntities.get().stream()
-                    .map(Item::toModel)
+                    .map(Item::toDto)
                     .toList();
         }
         String errorMessage = String.format("Items with title: %s not found", title);
@@ -98,7 +98,7 @@ public class ItemService {
         Optional<List<ItemEntity>> itemEntities = itemRepository.findAllByPrice(price);
         if (itemEntities.isPresent()) {
             return itemEntities.get().stream()
-                    .map(Item::toModel)
+                    .map(Item::toDto)
                     .toList();
         }
         String errorMessage = String.format("Items with price: %s not found", price);
@@ -109,7 +109,7 @@ public class ItemService {
         Optional<List<ItemEntity>> itemEntities = itemRepository.findAllByWeight(weight);
         if (itemEntities.isPresent()) {
             return itemEntities.get().stream()
-                    .map(Item::toModel)
+                    .map(Item::toDto)
                     .toList();
         }
         String errorMessage = String.format("Items with weight: %s not found", weight);
