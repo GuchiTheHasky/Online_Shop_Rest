@@ -63,10 +63,4 @@ public class ItemController {
         itemService.deleteItem(id);
         return ResponseEntity.ok("Item with id: " + id + " deleted.");
     }
-
-    @DeleteMapping("/delete/all")
-    public ResponseEntity<?> deleteAllItems() {
-        itemService.deleteAllItems();
-        return ResponseEntity.ok("All items deleted");
-    }
 }

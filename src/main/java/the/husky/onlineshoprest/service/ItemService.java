@@ -66,19 +66,10 @@ public class ItemService {
         if (itemOptional.isPresent()) {
             ItemEntity currentItem = itemOptional.get();
             itemRepository.delete(currentItem);
-        }
-        String errorMessage = String.format("Item with id: %s not found", id);
-        log.error("Error during deleting item: {}", errorMessage);
-        throw new ItemNotFoundException(errorMessage);
-    }
-
-    public void deleteAllItems() {
-        try {
-            itemRepository.deleteAll();
-        } catch (Exception e) {
-            String errorMessage = "Error during deleting all items";
-            log.error("Error during deleting all items: {}", errorMessage);
-            throw new ItemException(errorMessage, e.getCause());
+        } else {
+            String errorMessage = String.format("Item with id: %s not found", id);
+            log.error("Error during deleting item: {}", errorMessage);
+            throw new ItemNotFoundException(errorMessage);
         }
     }
 

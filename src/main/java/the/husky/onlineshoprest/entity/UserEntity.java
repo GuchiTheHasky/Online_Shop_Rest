@@ -46,7 +46,7 @@ public class UserEntity {
     private LocalDate registrationDate;
 
     @PrePersist
-    private void injectDate() {
+    private void setDefaultValues() {
         this.registrationDate = LocalDate.now();
     }
 }

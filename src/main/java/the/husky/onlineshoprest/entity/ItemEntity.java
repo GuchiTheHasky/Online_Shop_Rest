@@ -31,5 +31,4 @@ public class ItemEntity {
     @Column(name = "weight")
     @DecimalMin(value = "0.1", message = "Weight should be greater than 0")
     private double weight;
-
 }

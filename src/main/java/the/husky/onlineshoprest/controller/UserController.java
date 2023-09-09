@@ -69,10 +69,4 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.ok("User with id: " + id + " was deleted.");
     }
-
-    @DeleteMapping("/delete/all")
-    public ResponseEntity<?> deleteAllUsers() {
-        userService.deleteAllUsers();
-        return ResponseEntity.ok("All users were deleted.");
-    }
 }

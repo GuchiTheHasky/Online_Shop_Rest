@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import the.husky.onlineshoprest.entity.UserEntity;
 import the.husky.onlineshoprest.exception.user.UserAlreadyExistException;
-import the.husky.onlineshoprest.exception.user.UserException;
 import the.husky.onlineshoprest.exception.user.UserNotFoundException;
 import the.husky.onlineshoprest.dto.User;
 import the.husky.onlineshoprest.repository.UserRepository;
@@ -69,19 +68,10 @@ public class UserService {
         if (userOptional.isPresent()) {
             UserEntity currentUser = userOptional.get();
             userRepository.delete(currentUser);
-        }
-        String errorMessage = String.format("User with id: %s is not exist", id);
-        log.error("Error during deleting user: {}", errorMessage);
-        throw new UserNotFoundException(errorMessage);
-    }
-
-    public void deleteAllUsers() {
-        try {
-            userRepository.deleteAll();
-        } catch (Exception e) {
-            String errorMessage = "Error during deleting all users";
-            log.error("Error during deleting all users: {}", errorMessage);
-            throw new UserException(errorMessage);
+        } else {
+            String errorMessage = String.format("User with id: %s is not exist", id);
+            log.error("Error during deleting user: {}", errorMessage);
+            throw new UserNotFoundException(errorMessage);
         }
     }
 
