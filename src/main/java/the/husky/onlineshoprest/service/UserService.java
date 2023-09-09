@@ -26,7 +26,7 @@ public class UserService {
                 .toList();
     }
 
-    public User getUserById(Long id) { // +
+    public User getUserById(Long id) {
         UserEntity userEntity = userRepository.findById(id).orElse(null);
         if (userEntity == null) {
             String errorMessage = String.format("User with id: %s is not exist", id);
@@ -36,7 +36,7 @@ public class UserService {
         return User.toModel(userEntity);
     }
 
-    public User appendUser(UserEntity userEntity) { // +
+    public User appendUser(UserEntity userEntity) {
         if (isMandatoryFieldsAlreadyTaken(userEntity)) {
             String errorMessage = String.format("User with current login: %s || email: %s is already exist",
                     userEntity.getLogin(), userEntity.getEmail());

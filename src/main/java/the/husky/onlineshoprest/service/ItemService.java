@@ -36,14 +36,13 @@ public class ItemService {
     }
 
     public Item apendItem(ItemEntity itemEntity) {
-        try {
+        if (!isValidItemTitle(itemEntity)) {
             ItemEntity item = itemRepository.save(itemEntity);
             return Item.toModel(item);
-        } catch (Exception e) {
-            String errorMessage = "Error during adding item";
-            log.error("Error during adding item: {}", errorMessage);
-            throw new ItemException(errorMessage, e.getCause());
         }
+        String errorMessage = "Error during adding item, title is empty or null";
+        log.error("Error during adding item: {}", errorMessage);
+        throw new ItemException(errorMessage);
     }
 
     public Item editItem(long id, ItemEntity itemEntity) {
@@ -115,5 +114,9 @@ public class ItemService {
         }
         String errorMessage = String.format("Items with weight: %s not found", weight);
         throw new ItemNotFoundException(errorMessage);
+    }
+
+    private boolean isValidItemTitle(ItemEntity itemEntity) {
+        return itemEntity.getTitle() != null && !itemEntity.getTitle().isEmpty();
     }
 }

@@ -58,8 +58,8 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @PostMapping("/edit/{userId}")
-    public ResponseEntity<?> editUser(@PathVariable("userId") long id, @RequestBody @Valid UserEntity userEntity) {
+    @PostMapping("/edit/{id}")
+    public ResponseEntity<?> editUser(@PathVariable("id") long id, @RequestBody @Valid UserEntity userEntity) {
         User user = userService.editUser(id, userEntity);
         return ResponseEntity.ok(user);
     }

@@ -33,7 +33,7 @@ public class UserEntity {
     @NotBlank(message = "Password is mandatory")
     private String password;
 
-    @Column(name = "email"/*, unique = true*/)
+    @Column(name = "email", unique = true)
     @Email(message = "Email should be valid")
     private String email;
 
