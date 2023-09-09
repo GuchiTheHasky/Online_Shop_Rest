@@ -66,13 +66,13 @@ public class UserController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
-        User user = userService.deleteUser(id);
-        return ResponseEntity.ok(user);
+        userService.deleteUser(id);
+        return ResponseEntity.ok("User with id: " + id + " was deleted.");
     }
 
     @DeleteMapping("/delete/all")
     public ResponseEntity<?> deleteAllUsers() {
         userService.deleteAllUsers();
-        return ResponseEntity.ok("All users were deleted");
+        return ResponseEntity.ok("All users were deleted.");
     }
 }

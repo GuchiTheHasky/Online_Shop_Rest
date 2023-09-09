@@ -62,12 +62,11 @@ public class ItemService {
         throw new ItemNotFoundException(errorMessage);
     }
 
-    public Item deleteItem(long id) {
+    public void deleteItem(long id) {
         Optional<ItemEntity> itemOptional = itemRepository.findById(id);
         if (itemOptional.isPresent()) {
             ItemEntity currentItem = itemOptional.get();
             itemRepository.delete(currentItem);
-            return Item.toModel(currentItem);
         }
         String errorMessage = String.format("Item with id: %s not found", id);
         log.error("Error during deleting item: {}", errorMessage);

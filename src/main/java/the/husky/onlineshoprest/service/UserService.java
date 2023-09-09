@@ -64,12 +64,11 @@ public class UserService {
         throw new UserNotFoundException(errorMessage);
     }
 
-    public User deleteUser(long id) {
+    public void deleteUser(long id) {
         Optional<UserEntity> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             UserEntity currentUser = userOptional.get();
             userRepository.delete(currentUser);
-            return User.toModel(currentUser);
         }
         String errorMessage = String.format("User with id: %s is not exist", id);
         log.error("Error during deleting user: {}", errorMessage);
